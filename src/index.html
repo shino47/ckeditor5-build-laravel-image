@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="csrf-token" content="the_token" />
+    <title><%= htmlWebpackPlugin.options.title %></title>
+    <style>
+      body {
+        max-width: 992px;
+        margin: 20px auto;
+        line-height: 1.4;
+        font-family: Arial, Helvetica, sans-serif;
+      }
+    </style>
+  </head>
+  <body>
+    <h1><%= htmlWebpackPlugin.options.title %></h1>
+
+    <p>
+      Custom CKEditor 5 Classic build with support for uploading images to a Laravel endpoint. It
+      provides the configurations needed by Laravel for CSRF protection.
+    </p>
+
+    <div id="editor">
+      <p>
+        For more information, please check the README.md.
+      </p>
+
+      <figure class="image">
+        <img
+          src="https://images.unsplash.com/photo-1517155050999-25a319d65f8f?ixlib=rb-1.2.1&auto=format&fit=crop&w=1024&q=80"
+          alt="San Blas, Panamá" />
+      </figure>
+    </div>
+
+    <script>
+      ClassicEditor.create(document.querySelector('#editor'), {
+        simpleUpload: {
+          uploadUrl: {
+            url: 'http://localhost:9000/my-laravel-endpoint'
+          }
+        }
+      }).then(editor => {
+        console.log('Editor created successfully!');
+      }).catch(err => {
+        console.error(err.stack);
+      });
+    </script>
+  </body>
+</html>

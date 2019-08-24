@@ -120,7 +120,8 @@ ClassicEditor.defaultConfig = {
   simpleUpload: {
     uploadUrl: {
       headers: {
-        'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content
+        'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content,
+        'accept': 'application/json'
       }
     }
   }

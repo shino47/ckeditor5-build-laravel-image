@@ -1,6 +1,6 @@
 {
   "name": "ckeditor5-build-laravel-image",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Custom CKEditor 5 classic build with support for uploading images to a Laravel endpoint.",
   "keywords": [
     "ckeditor",
@@ -34,7 +34,7 @@
     "@ckeditor/ckeditor5-paste-from-office": "^11.0.4",
     "@ckeditor/ckeditor5-table": "^13.0.2",
     "@ckeditor/ckeditor5-theme-lark": "^14.1.1",
-    "ckeditor5-simple-upload": "^1.0.6"
+    "ckeditor5-simple-upload": "^1.0.7"
   },
   "devDependencies": {
     "@ckeditor/ckeditor5-dev-utils": "^12.0.0",

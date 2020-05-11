@@ -3,14 +3,11 @@
 [![npm version](https://badge.fury.io/js/ckeditor5-build-laravel-image.svg)](https://badge.fury.io/js/ckeditor5-build-laravel-image)
 
 Custom CKEditor 5 Classic build with support for uploading images to a Laravel endpoint. It provides
-the configurations needed by Laravel for CSRF protection.
+the configurations needed by Laravel for [CSRF protection](https://laravel.com/docs/master/csrf).
 
 This build is based on [ckeditor5-build-classic](https://github.com/ckeditor/ckeditor5-build-classic)
 and uses the [ckeditor5-simple-upload](https://github.com/pourquoi/ckeditor5-simple-upload) plugin
 to upload the images to the Laravel application.
-
-Laravel has a [CSRF protection](https://laravel.com/docs/master/csrf), so you have to send a CSRF
-token or add an exception to the `VerifyCsrfToken` middleware (not recommended).
 
 ## Installation
 
@@ -20,7 +17,15 @@ npm i ckeditor5-build-laravel-image
 
 ## Usage
 
-First, you have to set your token in a meta tag:
+First, add this plugin to your `webpack.mix.js`:
+
+```javascript
+mix.scripts([
+  'node_modules/ckeditor5-build-laravel-image/build/ckeditor.js',
+], 'public/js/vendors.js');
+```
+
+Next, you have to set your CSRF token in a meta tag:
 
 ```html
 <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -44,6 +49,37 @@ ClassicEditor.create(document.querySelector('#editor'), {
 
 Where `simpleUpload.uploadUrl.url` is the URL of your Laravel endpoint that manages the image
 upload.
+
+### Language
+
+To change the UI language, add the preferred language in your `webpack.mix.js`:
+
+```javascript
+mix.scripts([
+  'node_modules/ckeditor5-build-laravel-image/build/ckeditor.js',
+  'node_modules/ckeditor5-build-laravel-image/build/translations/es.js',
+], 'public/js/vendors.js');
+```
+
+Then, add the language code to your implementation:
+
+```javascript
+ClassicEditor.create(document.querySelector('#editor'), {
+  language: 'es',
+  simpleUpload: {
+    uploadUrl: {
+      url: 'http://localhost:9000/my-laravel-endpoint'
+    }
+  }
+}).then(editor => {
+  console.log('Editor created successfully!');
+}).catch(err => {
+  console.error(err.stack);
+});
+```
+
+For more information, please check the documentation:
+https://ckeditor.com/docs/ckeditor5/latest/features/ui-language.html
 
 ### Laravel endpoint
 
